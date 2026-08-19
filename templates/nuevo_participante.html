@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <title>Inscribir participante</title>
+</head>
+<body>
+    <h2>Inscribir participante</h2>
+    <form action="/participante" method="POST">
+        <label>RUT:</label>
+        <input type="text" name="rut" required><br>
+
+        <label>Nombre completo:</label>
+        <textarea name="nombre"></textarea><br>
+
+        <label>Correo:</label>
+        <input type="email" name="correo" required><br>
+
+        <label>telfno:</label>
+        <input type="number" name="telefono" required><br>
+
+        <label>Institucion o escuela:</label>
+        <input type="text" name="institucion" required><br>
+
+        <label>Curso a inscribir:</label>
+        <select name="id_curso" required>
+            {% for curso in cursos %}
+                <option value="{{ curso[0] }}">{{ curso[1] }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>

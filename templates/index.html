@@ -11,11 +11,26 @@
 	<ul>
 		{% for curso in cursos%}
 		<li>
-			<span>{{ curso[0] }} (Descripcion: {{ curso[1] }}  Inicio: {{ curso[2] }} Fin: {{ curso[3] }} Capacidad: {{ curso[4] }} Estado: {{ curso[5] }})</span>
+			<span>{{ curso[0] }} (Descripcion:{{ curso[1] }}  Inicio: {{ curso[2] }} Fin: {{ curso[3] }} Capacidad: {{ curso[4] }} Estado: {{ curso[5] }}) </span>
 			<div>
 				<a href="/edit/{{curso[0]}}">Editar</a>
 				<a href="/close/{{curso[0]}}">Cerrar</a>
 				<a href="/delete/{{curso[0]}}">Eliminar</a>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+
+
+
+	<h2> Listado de participantes </h2>
+	<a href="/participante"> Inscribir participante</a>
+	<ul>
+		{% for participante in participantes%}
+		<li>
+			<span>{{ participante[0] }} (nombre: {{ participante[1] }}  correo: {{ participante[2] }} telefono: {{ participante[3] }} institucion: {{ participante[4] }} curso: {{ participante[5] }})</span>
+			<div>
+				<a href="/delete/{{participante[0]}}">Eliminar</a>
 			</div>
 		</li>
 		{% endfor %}
