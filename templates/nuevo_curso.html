@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <title>Crear nuevo curso</title>
+</head>
+<body>
+    <h2>Crear nuevo curso</h2>
+    <form action="/nuevo" method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br>
+
+        <label>Descripción:</label>
+        <textarea name="descripcion"></textarea><br>
+
+        <label>Fecha inicio:</label>
+        <input type="date" name="inicio" required><br>
+
+        <label>Fecha término:</label>
+        <input type="date" name="fin" required><br>
+
+        <label>Cupos máximos:</label>
+        <input type="number" name="cupos_max" required><br>
+
+        <label>Estado:</label>
+        <select name="estado">
+            <option value="abierto">Abierto</option>
+            <option value="cerrado">Cerrado</option>
+        </select><br>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>

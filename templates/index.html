@@ -5,7 +5,19 @@
 </head>
 
 <body>
-	<nav>
-		
-	</nav>
+
+	<h2> Listado Cursos </h2>
+	<a href="/nuevo"> Crear nuevo curso</a>
+	<ul>
+		{% for curso in cursos%}
+		<li>
+			<span>{{ curso[0] }} (Descripcion: {{ curso[1] }}  Inicio: {{ curso[2] }} Fin: {{ curso[3] }} Capacidad: {{ curso[4] }} Estado: {{ curso[5] }})</span>
+			<div>
+				<a href="/edit/{{curso[0]}}">Editar</a>
+				<a href="/close/{{curso[0]}}">Cerrar</a>
+				<a href="/delete/{{curso[0]}}">Eliminar</a>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
 </body>
