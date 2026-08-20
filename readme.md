@@ -5,24 +5,24 @@ La base de datos se creara en sqlite mediante sql Browser
 Mediante codigo vamos a querer, leer y modificar nuestras tablas
 
 
-Funcionalidades conseguidas:
+## Funcionalidades conseguidas:
 
-Creacion de nuevos cursos
-Inscripcion de estudiantes a estos cursos
-Candidato no se puede inscribir al mismo curso mas de una vez
-Correo electronico debe tener formato valido
-Asignacion de codigo unico a cada inscripcion
+- Creacion de nuevos cursos
+- Inscripcion de estudiantes a estos cursos
+- Candidato no se puede inscribir al mismo curso mas de una vez
+- Correo electronico debe tener formato valido
+- Asignacion de codigo unico a cada inscripcion
 
 
-No incluye:
-Búsqueda de participantes. 
-Filtros por curso. 
-Filtros por estado. 
-Ordenamiento de la información. 
+## No incluye:
+- Búsqueda de participantes. 
+- Filtros por curso. 
+- Filtros por estado. 
+- Ordenamiento de la información. 
 
-Total de cursos registrados. 
-Total de participantes inscritos. 
-Total de cupos disponibles. 
-Cantidad de cursos completos. 
-Porcentaje de ocupación de los cursos.
-exportar listado en formato CSV
+- Total de cursos registrados. 
+- Total de participantes inscritos. 
+- Total de cupos disponibles. 
+- Cantidad de cursos completos. 
+- Porcentaje de ocupación de los cursos.
+- exportar listado en formato CSV
