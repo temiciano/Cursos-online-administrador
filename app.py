@@ -5,7 +5,9 @@ app = Flask(__name__)
 
 DB_path = "cursos.db"
 
+
 #------------ funciones de visualizacoin -------
+
 
 def get_cursos():
 	conn=sqlite3.connect(DB_path)
@@ -33,7 +35,9 @@ def get_participantes():
 	conn.close()
 	return participantes
 
+
 # -------- funciones de escritura -----------
+
 
 @app.route('/nuevo', methods=['GET', 'POST'])
 def nuevo_curso():
@@ -58,6 +62,7 @@ def nuevo_curso():
 
     return render_template('nuevo_curso.html')
 
+
 @app.route('/participante', methods=['GET', 'POST'])
 def nuevo_participante():
     conn = sqlite3.connect('cursos.db')
@@ -70,19 +75,29 @@ def nuevo_participante():
         institucion = request.form['institucion']
         id_curso = request.form['id_curso']
 
-        cursor.execute("""
-            INSERT INTO participantes (rut, nombre, correo, telefono, institucion)
-            VALUES (?, ?, ?, ?, ?)
-        """, (rut, nombre, correo, telefono, institucion))
+        cursor.execute("SELECT id_participante FROM participantes WHERE rut = ?", (rut,))
+        resultado = cursor.fetchone()
 
-        id_participante = cursor.lastrowid
 
-        cursor.execute("""
-            INSERT INTO inscripciones (id_curso, id_participante, estado)
-            VALUES (?, ?, ?)
-        """, (id_curso, id_participante, 'confirmado'))
+        if resultado:
+            id_participante = resultado[0]
+        else:
+            cursor.execute("""
+                INSERT INTO participantes (rut, nombre, correo, telefono, institucion)
+                VALUES (?, ?, ?, ?, ?)
+            """, (rut, nombre, correo, telefono, institucion))
+            id_participante = cursor.lastrowid
 
-        conn.commit()
+        try:
+            cursor.execute("""
+                INSERT INTO inscripciones (id_curso, id_participante, estado)
+                VALUES (?, ?, ?)
+            """, (id_curso, id_participante, 'confirmado'))
+            conn.commit()
+        except sqlite3.IntegrityError:
+            conn.close()
+            return "Esta persona ya esta inscrita en este curso", 400
+
         conn.close()
         return redirect('/')
 
@@ -90,6 +105,28 @@ def nuevo_participante():
     cursos = cursor.fetchall()
     conn.close()
     return render_template('nuevo_participante.html', cursos=cursos)
+
+
+@app.route('/delete/<int:id_curso>')
+def delete_curso(id_curso):
+    conn = sqlite3.connect(DB_path)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM inscripciones WHERE id_curso = ?", (id_curso,))
+    cursor.execute("DELETE FROM cursos WHERE id_curso = ?", (id_curso,))
+    conn.commit()
+    conn.close()
+    return redirect('/')
+
+
+@app.route('/remove/<int:id_participante>')
+def delete_participante(id_participante):
+    conn = sqlite3.connect(DB_path)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM inscripciones WHERE id_participante = ?", (id_participante,))
+    cursor.execute("DELETE FROM participantes WHERE id_participante = ?", (id_participante,))
+    conn.commit()
+    conn.close()
+    return redirect('/')
 
 @app.route('/')
 def index():

@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <head>
     <title>Inscribir participante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Inscribir participante</h2>
-    <form action="/participante" method="POST">
-        <label>RUT:</label>
-        <input type="text" name="rut" required><br>
+    <div class="form-container">
+        <h2>Inscribir participante</h2>
+        <form action="/participante" method="POST">
+            <label>RUT:</label>
+            <input type="text" name="rut" required>
 
-        <label>Nombre completo:</label>
-        <textarea name="nombre"></textarea><br>
+            <label>Nombre completo:</label>
+            <textarea name="nombre"></textarea>
 
-        <label>Correo:</label>
-        <input type="email" name="correo" required><br>
+            <label>Correo:</label>
+            <input type="email" name="correo" required>
 
-        <label>telfno:</label>
-        <input type="number" name="telefono" required><br>
+            <label>Telefono:</label>
+            <input type="number" name="telefono" required>
 
-        <label>Institucion o escuela:</label>
-        <input type="text" name="institucion" required><br>
+            <label>Institucion o escuela:</label>
+            <input type="text" name="institucion" required>
 
-        <label>Curso a inscribir:</label>
-        <select name="id_curso" required>
-            {% for curso in cursos %}
-                <option value="{{ curso[0] }}">{{ curso[1] }}</option>
-            {% endfor %}
-        </select><br>
+            <label>Curso a inscribir:</label>
+            <select name="id_curso" required>
+                {% for curso in cursos %}
+                    <option value="{{ curso[0] }}">{{ curso[1] }}</option>
+                {% endfor %}
+            </select>
 
-        <button type="submit">Enviar</button>
-    </form>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
 </body>

@@ -1,38 +1,73 @@
 <!DOCTYPE html>
-
 <head>
     <title> [ADMINISTRADOR] Cursos online</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-
-	<h2> Listado Cursos </h2>
-	<a href="/nuevo"> Crear nuevo curso</a>
-	<ul>
-		{% for curso in cursos%}
-		<li>
-			<span>{{ curso[0] }} (Descripcion:{{ curso[1] }}  Inicio: {{ curso[2] }} Fin: {{ curso[3] }} Capacidad: {{ curso[4] }} Estado: {{ curso[5] }}) </span>
-			<div>
-				<a href="/edit/{{curso[0]}}">Editar</a>
-				<a href="/close/{{curso[0]}}">Cerrar</a>
-				<a href="/delete/{{curso[0]}}">Eliminar</a>
-			</div>
-		</li>
-		{% endfor %}
-	</ul>
-
-
-
-	<h2> Listado de participantes </h2>
-	<a href="/participante"> Inscribir participante</a>
-	<ul>
-		{% for participante in participantes%}
-		<li>
-			<span>{{ participante[0] }} (nombre: {{ participante[1] }}  correo: {{ participante[2] }} telefono: {{ participante[3] }} institucion: {{ participante[4] }} curso: {{ participante[5] }})</span>
-			<div>
-				<a href="/delete/{{participante[0]}}">Eliminar</a>
-			</div>
-		</li>
-		{% endfor %}
-	</ul>
+    <h2>Listado Cursos</h2>
+    <a class="btn-crear" href="/nuevo">Crear nuevo curso</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Capacidad</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+            <tr>
+                <td>{{ curso[6] }}</td>
+                <td>{{ curso[0] }}</td>
+                <td>{{ curso[1] }}</td>
+                <td>{{ curso[2] }}</td>
+                <td>{{ curso[3] }}</td>
+                <td>{{ curso[4] }}</td>
+                <td>
+                    <span class="estado estado-{{ curso[5] }}">{{ curso[5] }}</span>
+                </td>
+                <td>
+                    <a href="/edit/{{curso[6]}}">Editar</a>
+                    <a href="/close/{{curso[6]}}">Cerrar</a>
+                    <a href="/delete/{{curso[6]}}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Listado de participantes</h2>
+    <a class="btn-crear" href="/participante">Inscribir participante</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Institución</th>
+                <th>Curso</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participante in participantes %}
+            <tr>
+                <td>{{ participante[0] }}</td>
+                <td>{{ participante[1] }}</td>
+                <td>{{ participante[2] }}</td>
+                <td>{{ participante[3] }}</td>
+                <td>{{ participante[4] }}</td>
+                <td>{{ participante[5] }}</td>
+                <td>
+                    <a href="remove/{{participante[0]}}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
