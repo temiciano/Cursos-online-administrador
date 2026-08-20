@@ -26,3 +26,21 @@ Mediante codigo vamos a querer, leer y modificar nuestras tablas
 - Cantidad de cursos completos. 
 - Porcentaje de ocupación de los cursos.
 - exportar listado en formato CSV
+
+
+#Ejecutar comando "python ./app.py"
+
+Pagina Principal
+<p align="center">
+  <img src="/Screenshots/cap_1.png" width="500" alt="Pagina principal"/>
+</p>
+
+Pagina de creacion de cursos
+<p align="center">
+  <img src="/Screenshots/cap_2.png" width="500" alt="Creacion cursos"/>
+</p>
+
+Pagina de inscripcion de participantes
+<p align="center">
+  <img src="/Screenshots/cap_3.png" width="500" alt="Inscripcion particitapntes"/>
+</p>
